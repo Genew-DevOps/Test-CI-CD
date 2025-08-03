@@ -8,7 +8,7 @@ terraform {
 }
 provider "azurerm" {
   features {}
-  subscription_id = "325754cd-a12c-48d9-921b-eb17c173bd01"
+  subscription_id = "8620618b-e18e-453b-abb0-ee127f4295c8"
 }
 
 resource "azurerm_resource_group" "example" {
@@ -16,10 +16,11 @@ resource "azurerm_resource_group" "example" {
   location = "westus2"
 }
 
-resource "azurerm_storage_account" "example" {
+resource "azurerm_storage_account" "example2" {
   name                     = "grandeaccount"
   resource_group_name      = "grande-rg"
   location                 = "westus2"
   account_tier             = "Standard"
   account_replication_type = "LRS"
+  depends_on = [ azurerm_resource_group.example ] 
 }
